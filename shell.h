@@ -9,13 +9,16 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 
+extern char **environ;
 
 #define DELIM " \t\n\r\a"
 
 void shell_interact(void);
+void shell_no_interact(void);
 
 char *get_line(void);
 char **token(char *lineptr);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+int execute(char **av);
 
 #endif /*SHELL_H*/
