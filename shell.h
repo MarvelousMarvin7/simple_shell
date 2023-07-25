@@ -20,5 +20,6 @@ char *get_line(void);
 char **token(char *lineptr);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 int execute(char **av);
+char *get_path(char *command);
 
 #endif /*SHELL_H*/

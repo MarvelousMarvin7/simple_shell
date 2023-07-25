@@ -11,29 +11,35 @@ int execute(char **av)
 {
 	pid_t pid;
 	int status;
+	char *command = NULL;
 
 	if (av[0] == NULL || av[0][0] == '\0')
 		return (-1);
-
-	pid = fork();
-	if (pid == 0)
+	if (av)
 	{
+		command = get_path(av[0]);
 
-		if (execve(av[0], av, environ) == -1)
+		pid = fork();
+		if (pid == 0)
 		{
-			perror("./shell");
+
+			if (execve(command, av, environ) == -1)
+			{
+				perror("./shell");
+			}
+			exit(EXIT_FAILURE);
 		}
-		exit(EXIT_FAILURE);
+		else if (pid < 0)
+		{
+			perror("error in child process: forking");
+		}
+		else
+		{
+			do {
+				waitpid(pid, &status, WUNTRACED);
+			} while (!WIFEXITED(status) && !WIFSIGNALED(status));
+		}
+		return (-1);
 	}
-	else if (pid < 0)
-	{
-		perror("error in child process: forking");
-	}
-	else
-	{
-		do {
-			waitpid(pid, &status, WUNTRACED);
-		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
-	}
-	return (-1);
+	return (0);
 }
