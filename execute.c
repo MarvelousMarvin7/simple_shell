@@ -15,9 +15,8 @@ int execute(char **av)
 
 	if (av[0] == NULL || av[0][0] == '\0')
 		return (-1);
-	if (strcmp(av[0], "exit") == 0)
-		return (exit_cmd(av));
-	else if (av)
+
+	if (av)
 	{
 		command = get_path(av[0]);
 

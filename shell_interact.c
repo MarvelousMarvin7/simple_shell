@@ -21,7 +21,7 @@ void shell_interact(void)
 			continue;
 		}
 		av = token(lineptr);
-		status = execute(av);
+		status = builtins(av);
 
 		free(lineptr);
 		free(av);
