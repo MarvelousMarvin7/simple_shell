@@ -23,6 +23,7 @@ int execute(char **av);
 char *get_path(char *command);
 int exit_cmd(char **av);
 int _atoi(const char *str);
+int env_cmd(char **av);
 int builtins(char **av);
 
 #endif /*SHELL_H*/

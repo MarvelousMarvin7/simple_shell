@@ -11,9 +11,11 @@ int builtins(char **av)
 	unsigned long int i;
 
 	char *builtin_list[] = {
+		"env",
 		"exit"
 	};
 	int (*builtin_func[])(char **) = {
+		&env_cmd,
 		&exit_cmd
 	};
 
