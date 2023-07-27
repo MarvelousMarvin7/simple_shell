@@ -7,7 +7,8 @@
  * Return: 1 on success
  */
 int env_cmd(char **av)
-{     	int i = 0;
+{
+	int i = 0;
 
 	(void)av;
 
