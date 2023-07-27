@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * own_env - function that prints enviroment variables
+ * env_cmd - function that prints enviroment variables
  * @av: arguments by user
  *
  * Return: 1 on success

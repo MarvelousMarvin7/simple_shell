@@ -91,25 +91,19 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
  *
  * Return: token;
  */
-
 char *_strtok(char *str, char *delim)
 {
 	char *token;
-	static char *next_token = NULL;
+	static char *next_token;
 
 	if (str == NULL)
-	{
 		str = next_token;
-	}
-
-
 	if (str == NULL || *str == '\0')
-			return NULL;
-
+		return (NULL);
 	while (*str != '\0' && _strchr(delim, *str) != NULL)
-			str++;
+		str++;
 	if (*str == '\0')
-		return NULL;
+		return (NULL);
 	token = str;
 
 	while (*str != '\0' && _strchr(delim, *str) == NULL)
@@ -122,7 +116,7 @@ char *_strtok(char *str, char *delim)
 	else
 		next_token = NULL;
 
-	return token;
+	return (token);
 }
 
 /**
