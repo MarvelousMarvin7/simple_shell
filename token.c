@@ -19,7 +19,7 @@ char **token(char *lineptr)
 		perror("allocation error");
 		exit(EXIT_FAILURE);
 	}
-	token = strtok(lineptr, DELIM);
+	token = _strtok(lineptr, DELIM);
 	while (token != NULL)
 	{
 		if (token[0] == '#')
@@ -39,7 +39,7 @@ char **token(char *lineptr)
 			}
 			bufsize = newsize / sizeof(char *);
 		}
-		token = strtok(NULL, DELIM);
+		token = _strtok(NULL, DELIM);
 	}
 	tokens[i] = NULL;
 
@@ -82,4 +82,65 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	free(ptr);
 
 	return (p);
+}
+
+/**
+ * _strtok - tokenizes strings
+ * @str: string
+ * @delim: delimiter
+ *
+ * Return: token;
+ */
+
+char *_strtok(char *str, char *delim)
+{
+	char *token;
+	static char *next_token = NULL;
+
+	if (str == NULL)
+	{
+		str = next_token;
+	}
+
+
+	if (str == NULL || *str == '\0')
+			return NULL;
+
+	while (*str != '\0' && _strchr(delim, *str) != NULL)
+			str++;
+	if (*str == '\0')
+		return NULL;
+	token = str;
+
+	while (*str != '\0' && _strchr(delim, *str) == NULL)
+		str++;
+	if (*str != '\0')
+	{
+		*str = '\0';
+		next_token = str + 1;
+	}
+	else
+		next_token = NULL;
+
+	return token;
+}
+
+/**
+ * _strchr - fills memory with constant bytes
+ * @s: pointer of characters
+ * @c: characters to locate
+ * Return: s else NULL
+ */
+char *_strchr(char *s, char c)
+{
+	int i;
+
+	for (i = 0; s[i]; i++)
+	{
+		if (s[i] == c)
+			return (s + i);
+	}
+	if (s[i] == c)
+		return (s + i);
+	return (0);
 }

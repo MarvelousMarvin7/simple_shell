@@ -25,5 +25,7 @@ int exit_cmd(char **av);
 int _atoi(const char *str);
 int env_cmd(char **av);
 int builtins(char **av);
+char *_strtok(char *str, char *delim);
+char *_strchr(char *s, char c);
 
 #endif /*SHELL_H*/
